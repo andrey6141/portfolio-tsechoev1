@@ -1,0 +1,1 @@
+// Form submission is implemented in main.js and confirmed by the server response.

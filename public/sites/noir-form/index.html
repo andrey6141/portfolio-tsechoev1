@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090909">
+<title>NOIR / FORM — Парфюмерия характера</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--bg:#090909;--panel:#111;--line:#292929;--muted:#8a8a86;--white:#f2f0eb;--acid:#d7ff63}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:Manrope,Arial,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E")}
+header{height:82px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:absolute;top:0;width:100%;z-index:5;background:rgba(9,9,9,.55);backdrop-filter:blur(14px)}
+.logo{font-size:18px;font-weight:800;letter-spacing:.18em}.logo span{color:var(--acid)}nav{display:flex;gap:34px;font:11px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.12em;color:#c0c0bb}nav a{transition:color .25s}nav a:hover{color:var(--acid)}.header-right{display:flex;align-items:center;gap:24px;font:11px 'DM Mono',monospace;text-transform:uppercase}.cart{border:1px solid #444;padding:11px 15px;background:none;color:var(--white);letter-spacing:.08em}.cart b{color:var(--acid);margin-left:7px}
+.hero{min-height:780px;height:100vh;max-height:1000px;padding:150px 5vw 55px;position:relative;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;background:radial-gradient(ellipse at 72% 47%,#282722 0%,#121211 25%,#090909 62%)}
+.hero:after{content:"";position:absolute;width:55vw;height:55vw;border:1px solid #393832;border-radius:50%;right:-8vw;top:12%;box-shadow:0 0 0 5vw rgba(255,255,255,.012),0 0 0 10vw rgba(255,255,255,.009)}
+.hero-top{display:flex;justify-content:space-between;position:relative;z-index:2}.eyebrow,.mono{font:10px 'DM Mono',monospace;letter-spacing:.17em;text-transform:uppercase;color:var(--muted)}.hero-copy{position:relative;z-index:2;max-width:790px;margin-top:20px}.hero h1{font-size:clamp(68px,11.4vw,172px);line-height:.82;letter-spacing:-.095em;margin:0;font-weight:800;text-transform:uppercase}.hero h1 span{display:block;color:transparent;-webkit-text-stroke:1px #aaa9a2;margin-left:12vw}.hero-sub{display:flex;align-items:flex-end;justify-content:space-between;margin-top:42px;max-width:680px}.hero-sub p{font-size:14px;line-height:1.7;color:#aaa;max-width:270px}.cta{display:inline-flex;align-items:center;gap:35px;padding:17px 20px;background:var(--acid);color:#10110b;font:11px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;border:0;transition:transform .25s,background .25s}.cta:hover{transform:translateY(-4px);background:#e6ff9d}.hero-product{position:absolute;z-index:1;right:12%;top:18%;width:min(31vw,430px);height:62%;display:grid;place-items:center;animation:float 7s ease-in-out infinite}.bottle{position:relative;width:46%;height:74%;min-width:145px;border:1px solid #77766f;border-radius:22px 22px 32px 32px;background:linear-gradient(105deg,rgba(255,255,255,.23),rgba(255,255,255,.025) 25%,rgba(0,0,0,.4) 70%,rgba(255,255,255,.14));box-shadow:25px 35px 75px #000, inset 8px 0 18px #ffffff12,inset -8px 0 18px #0009;transform:rotate(7deg);display:flex;align-items:center;justify-content:center}.bottle:before{content:"";position:absolute;top:-15%;width:34%;height:16%;background:linear-gradient(90deg,#555,#c6c2b3,#444);border-radius:5px 5px 1px 1px;box-shadow:0 8px 20px #000}.bottle:after{content:"";position:absolute;inset:8px;border:1px solid #ffffff20;border-radius:16px 16px 25px 25px}.bottle-label{text-align:center;z-index:1;color:#dedbd1}.bottle-label strong{display:block;font-size:clamp(13px,2vw,23px);letter-spacing:.2em}.bottle-label small{display:block;font:8px 'DM Mono',monospace;letter-spacing:.25em;margin-top:9px;color:#aaa}.hero-bottom{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:end}.scroll{font:10px 'DM Mono',monospace;letter-spacing:.14em;color:#777}.scroll:before{content:"↓";color:var(--acid);margin-right:12px;font-size:16px}.hero-index{font:10px 'DM Mono',monospace;color:#777}
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:17px 0;background:#0e0e0d}.marquee-track{display:flex;white-space:nowrap;animation:marquee 25s linear infinite;font-size:12px;font-weight:700;letter-spacing:.2em;color:#777}.marquee-track span{padding:0 28px}.marquee-track i{font-style:normal;color:var(--acid)}
+section{padding:120px 5vw}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:48px}.section-head h2{font-size:clamp(38px,6vw,82px);letter-spacing:-.075em;line-height:.9;margin:12px 0 0;text-transform:uppercase}.section-head p{font-size:12px;line-height:1.7;color:var(--muted);max-width:230px}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.product{background:var(--panel);border:1px solid #202020;position:relative;min-width:0;transition:border-color .3s,transform .3s;overflow:hidden}.product:hover{border-color:#68685d;transform:translateY(-5px)}.product-visual{height:390px;display:grid;place-items:center;position:relative;background:radial-gradient(ellipse at 50% 60%,#292923,#151514 55%,#101010)}.product-visual:after{content:"";position:absolute;bottom:12%;width:48%;height:13px;border-radius:50%;background:#000;filter:blur(13px)}.mini-bottle{width:105px;height:220px;border-radius:13px 13px 20px 20px;position:relative;z-index:1;display:grid;place-items:center;box-shadow:18px 20px 35px #0009,inset 6px 0 10px #ffffff20;border:1px solid #7776}.mini-bottle:before{content:"";position:absolute;top:-28px;width:34px;height:30px;background:linear-gradient(90deg,#444,#c5c1b6,#555);border-radius:4px 4px 0 0}.mini-bottle span{font:9px 'DM Mono',monospace;letter-spacing:.15em;text-align:center;color:#e5e2d8}.b1{background:linear-gradient(100deg,#171a19,#49534b 40%,#111)}.b2{background:linear-gradient(100deg,#29221c,#8b6c4a 42%,#17110d)}.b3{background:linear-gradient(100deg,#15191e,#66717a 45%,#0e1115)}.product-tag{position:absolute;top:17px;left:17px;font:9px 'DM Mono',monospace;letter-spacing:.12em;color:var(--acid)}.product-info{padding:22px;display:flex;justify-content:space-between;align-items:end}.product-info h3{font-size:18px;letter-spacing:-.04em;margin:0 0 7px}.product-info p{font:9px 'DM Mono',monospace;color:#777;margin:0;letter-spacing:.08em}.price{text-align:right;font-size:14px}.add{margin-top:15px;background:none;border:1px solid #45453f;color:var(--white);padding:10px 12px;font:9px 'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase;transition:.2s}.add:hover{background:var(--acid);color:#111;border-color:var(--acid)}
+.manifesto{padding:110px 5vw;background:#d8d7cf;color:#111;display:grid;grid-template-columns:1fr 1.2fr;gap:8vw}.manifesto .eyebrow{color:#555}.manifesto h2{font-size:clamp(45px,7vw,100px);line-height:.86;letter-spacing:-.09em;text-transform:uppercase;margin:20px 0}.manifesto-copy{align-self:end;max-width:430px}.manifesto-copy p{font-size:17px;line-height:1.7}.manifesto-copy .mono{color:#555;margin-top:45px}
+.notes{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.note{padding:34px 28px;border-right:1px solid var(--line)}.note:last-child{border:0}.note strong{font:11px 'DM Mono',monospace;color:var(--acid)}.note h3{font-size:23px;letter-spacing:-.05em;margin:30px 0 10px}.note p{font-size:12px;color:var(--muted);line-height:1.7;margin:0}
+footer{padding:50px 5vw 35px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:end}.footer-logo{font-size:clamp(36px,7vw,90px);font-weight:800;letter-spacing:-.09em}.footer-meta{font:9px 'DM Mono',monospace;color:#777;line-height:2;text-align:right;letter-spacing:.1em}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.reveal.visible{opacity:1;transform:none}
+.toast{position:fixed;bottom:25px;right:25px;background:var(--acid);color:#111;padding:15px 20px;font:11px 'DM Mono',monospace;z-index:20;transform:translateY(100px);transition:transform .35s}.toast.show{transform:translateY(0)}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(2deg)}}@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* EXTRA MOTION + PRODUCT PAGES + CHECKOUT */
+html{scroll-padding-top:90px}
+body{cursor:default}
+header{position:fixed;transition:background .35s,border-color .35s}
+header.scrolled{background:rgba(8,8,8,.92);border-color:#444}
+.hero-copy,.hero-top,.hero-bottom{animation:riseIn 1s both}
+.hero-top{animation-delay:.12s}.hero-copy{animation-delay:.28s}.hero-bottom{animation-delay:.5s}
+.hero:after{animation:ringPulse 9s ease-in-out infinite alternate}
+.hero-product{transition:transform .25s ease-out;will-change:transform}
+.product-visual{cursor:pointer}
+.product-visual:before{content:"ОТКРЫТЬ АРОМАТ ↗";position:absolute;z-index:3;bottom:18px;right:18px;font:9px 'DM Mono',monospace;letter-spacing:.12em;color:var(--acid);opacity:0;transform:translateY(8px);transition:.35s}
+.product:hover .product-visual:before{opacity:1;transform:translateY(0)}
+.product-visual .mini-bottle{transition:transform .65s cubic-bezier(.2,.8,.2,1),filter .5s}
+.product:hover .mini-bottle{transform:translateY(-13px) rotate(-5deg) scale(1.06);filter:drop-shadow(0 20px 25px #000)}
+.product{transform-style:preserve-3d}
+.product-info h3{transition:letter-spacing .3s}
+.product:hover .product-info h3{letter-spacing:.04em}
+.add,.cta,.cart{position:relative;overflow:hidden}
+.add:after,.cta:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 25%,#ffffff55 50%,transparent 75%);transform:translateX(-120%);transition:transform .65s}
+.add:hover:after,.cta:hover:after{transform:translateX(120%)}
+.detail-page{display:none;min-height:80vh;padding:125px 5vw 100px;background:radial-gradient(ellipse at 25% 45%,#25251f,#090909 65%);border-top:1px solid var(--line)}
+.detail-page.open{display:block;animation:detailIn .65s cubic-bezier(.2,.8,.2,1) both}
+.detail-back{display:inline-block;border:1px solid #444;background:transparent;color:#aaa;padding:12px 16px;font:10px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;margin-bottom:45px}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:center}
+.detail-art{min-height:480px;display:grid;place-items:center;position:relative;background:radial-gradient(ellipse,#34342d 0%,#171715 48%,transparent 72%)}
+.detail-art:after{content:"";position:absolute;width:65%;height:18px;bottom:17%;background:#000;border-radius:50%;filter:blur(18px)}
+.detail-art .mini-bottle{transform:scale(1.6);z-index:1;transition:transform .8s}
+.detail-page.open .detail-art .mini-bottle{animation:detailBottle 1s .2s both}
+.detail-copy .eyebrow{color:var(--acid)}
+.detail-copy h2{font-size:clamp(55px,8vw,112px);line-height:.85;letter-spacing:-.09em;margin:22px 0;text-transform:uppercase}
+.detail-copy .detail-description{color:#aaa;line-height:1.9;font-size:14px;max-width:480px}
+.detail-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;border-top:1px solid #37372f;border-bottom:1px solid #37372f;padding:20px 0;margin:28px 0}
+.detail-specs strong{display:block;font:9px 'DM Mono',monospace;color:var(--acid);letter-spacing:.12em;margin-bottom:9px}
+.detail-specs span{font-size:11px;color:#aaa}
+.detail-buy{display:flex;align-items:center;gap:25px;flex-wrap:wrap}
+.detail-price{font-size:25px}
+.cart-overlay{position:fixed;inset:0;background:#000a;z-index:30;opacity:0;visibility:hidden;transition:.35s}
+.cart-overlay.open{opacity:1;visibility:visible}
+.cart-panel{position:absolute;right:0;top:0;height:100%;width:min(500px,100%);background:#111;padding:32px;overflow:auto;transform:translateX(100%);transition:transform .45s cubic-bezier(.2,.8,.2,1);border-left:1px solid #393930}
+.cart-overlay.open .cart-panel{transform:translateX(0)}
+.cart-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #333;padding-bottom:20px}
+.cart-head h2{font-size:27px;letter-spacing:-.06em;margin:0}
+.close-cart{background:none;border:1px solid #444;color:#eee;padding:9px 12px}
+.cart-items{padding:15px 0}
+.cart-row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:16px 0;border-bottom:1px solid #292929}
+.cart-row strong{font-size:13px}.cart-row small{display:block;color:#888;font:10px 'DM Mono',monospace;margin-top:6px}
+.cart-row button{background:none;border:0;color:var(--acid);font-size:12px}
+.cart-total{display:flex;justify-content:space-between;padding:18px 0;font-size:16px;border-top:1px solid #444}
+.checkout-form{margin-top:20px}
+.checkout-form h3{font-size:17px;margin:0 0 18px}
+.checkout-form label{display:block;font:9px 'DM Mono',monospace;letter-spacing:.12em;color:#999;margin:13px 0 7px}
+.checkout-form input,.checkout-form textarea,.checkout-form select{width:100%;background:#191919;border:1px solid #383838;color:#f2f0eb;padding:13px 14px;font:12px Manrope,sans-serif;outline:none;border-radius:0}
+.checkout-form input:focus,.checkout-form textarea:focus{border-color:var(--acid)}
+.checkout-form .cta{width:100%;justify-content:space-between;margin-top:20px}
+.checkout-note{font-size:10px;color:#777;line-height:1.6;margin-top:14px}
+.empty-cart{padding:30px 0;color:#888;font-size:13px;line-height:1.8}
+.success-message{display:none;padding:25px 0;color:var(--acid);line-height:1.8}
+.success-message.show{display:block;animation:riseIn .5s both}
+.progress-line{position:fixed;top:0;left:0;height:2px;width:0;background:var(--acid);z-index:50}
+.cursor-glow{position:fixed;width:220px;height:220px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,#d7ff6310,transparent 70%);transform:translate(-50%,-50%)}
+@keyframes riseIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ringPulse{from{transform:scale(.94);opacity:.5}to{transform:scale(1.06);opacity:1}}
+@keyframes detailIn{from{opacity:0;transform:translateY(35px);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes detailBottle{from{opacity:0;transform:translateY(35px) scale(1.35) rotate(-8deg)}to{opacity:1;transform:translateY(0) scale(1.6) rotate(0)}}
+@media(max-width:800px){.detail-grid{grid-template-columns:1fr;gap:35px}.detail-art{min-height:340px}.detail-copy h2{font-size:68px}.detail-page{padding-top:105px}.detail-art .mini-bottle{transform:scale(1.25)}@keyframes detailBottle{from{opacity:0;transform:translateY(25px) scale(1.1)}to{opacity:1;transform:translateY(0) scale(1.25)}}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+@media(max-width:800px){header{height:68px;padding:0 5vw}nav{display:none}.hero{min-height:760px;height:92vh;padding-top:120px}.hero-product{right:4%;top:22%;width:52vw;height:48%;opacity:.8}.hero-copy{margin-top:80px}.hero h1{font-size:clamp(65px,15vw,115px)}.hero-sub{display:block;margin-top:30px}.hero-sub p{max-width:240px}.hero-sub .cta{margin-top:10px}.section-head{display:block}.section-head p{margin-top:25px}.products{grid-template-columns:1fr 1fr}.product-visual{height:290px}.manifesto{grid-template-columns:1fr;gap:25px}.manifesto-copy{margin-left:15vw}.notes{grid-template-columns:1fr}.note{border-right:0;border-bottom:1px solid var(--line)}.note:last-child{border-bottom:0}footer{align-items:start;gap:25px;flex-direction:column}.footer-meta{text-align:left}}
+@media(max-width:480px){.header-right .location{display:none}.hero{min-height:700px}.hero-product{top:25%;right:-5%;width:62vw;height:42%;opacity:.65}.hero h1{font-size:17vw}.hero-sub p{font-size:12px}.products{grid-template-columns:1fr}.product-visual{height:340px}.section-head h2{font-size:52px}section{padding:85px 5vw}.manifesto{padding:85px 5vw}.manifesto-copy{margin-left:0}.hero-bottom{font-size:9px}}
+
+.product-visual{min-height:350px}
+.b4{background:linear-gradient(100deg,#171412,#76604c 42%,#16110d)}
+.b5{background:linear-gradient(100deg,#101519,#52636b 45%,#0d1012)}
+.b6{background:linear-gradient(100deg,#17151b,#665c70 45%,#111015)}
+.b7{background:linear-gradient(100deg,#171915,#777b58 45%,#10120e)}
+.b8{background:linear-gradient(100deg,#1b1212,#754747 45%,#120c0c)}
+.b9{background:linear-gradient(100deg,#171819,#8a8980 45%,#101112)}
+.b10{background:linear-gradient(100deg,#17120e,#96754c 45%,#100d0a)}
+.detail-extra{border-top:1px solid #37372f;margin:0 0 28px;padding-top:20px;max-width:500px}
+.detail-extra strong{display:block;color:var(--acid);font:9px 'DM Mono',monospace;letter-spacing:.14em;margin:0 0 9px}
+.detail-extra p{font-size:12px;line-height:1.8;color:#aaa;margin:0 0 16px}
+@media(min-width:1100px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+
+/* Animated perfume image galleries */
+.product-visual{overflow:hidden;isolation:isolate}
+.product-gallery{position:absolute;inset:0;overflow:hidden}
+.product-shot{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transform:scale(1.08);transition:opacity .8s ease,transform 1.5s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.product-shot.active{opacity:1;transform:scale(1)}
+.product-shot:nth-child(1){background:radial-gradient(ellipse at 50% 48%,#77715a55,transparent 58%),linear-gradient(145deg,#191916,#090909)}
+.product-shot:nth-child(2){background:radial-gradient(ellipse at 50% 55%,#a79b8055,transparent 55%),linear-gradient(25deg,#27241e,#090909 70%)}
+.product-shot:nth-child(3){background:radial-gradient(ellipse at 55% 42%,#d4d0b522,transparent 50%),linear-gradient(160deg,#30302b,#111 65%)}
+.product-shot .mini-bottle{z-index:1;transition:transform 1.2s ease,filter 1.2s ease}
+.product-shot:nth-child(2) .mini-bottle{transform:translateX(-8px) rotate(-7deg) scale(.92);filter:brightness(1.2)}
+.product-shot:nth-child(3) .mini-bottle{transform:translateY(12px) rotate(5deg) scale(1.08);filter:contrast(1.15) brightness(.88)}
+.product-shot:after{content:"NOIR / FORM — OBJECT STUDY";position:absolute;left:18px;bottom:18px;font:8px 'DM Mono',monospace;letter-spacing:.15em;color:#ffffff70}
+.product-visual:before{z-index:5}
+.detail-art{overflow:hidden}
+.detail-gallery{position:absolute;inset:0;overflow:hidden}
+.detail-gallery .product-shot{pointer-events:none}
+.detail-gallery .product-shot:after{content:"NOIR / FORM · 50 ML";font-size:9px;bottom:25px}
+.gallery-controls{position:absolute;z-index:6;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;gap:9px}
+.gallery-dot{width:7px;height:7px;border-radius:50%;padding:0;border:1px solid #aaa;background:transparent;cursor:pointer;transition:.25s}
+.gallery-dot.active{width:23px;border-radius:9px;background:var(--acid);border-color:var(--acid)}
+.gallery-arrow{position:absolute;z-index:7;top:50%;transform:translateY(-50%);border:1px solid #ffffff40;background:#08080866;color:#fff;width:36px;height:36px;cursor:pointer;font-size:17px;transition:.25s}
+.gallery-arrow:hover{background:var(--acid);color:#111;border-color:var(--acid)}
+.gallery-arrow.prev{left:15px}.gallery-arrow.next{right:15px}
+@media(hover:hover){.product-visual:hover .product-shot.active .mini-bottle{transform:translateY(-10px) rotate(-3deg) scale(1.07)}}
+@media(prefers-reduced-motion:reduce){.product-shot,.product-shot .mini-bottle{transition:none!important}}
+
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<header>
+  <a class="logo" href="#">NOIR<span>/</span>FORM</a>
+  <nav><a href="#collection">Коллекция</a><a href="#philosophy">Философия</a><a href="#notes">Композиция</a></nav>
+  <div class="header-right"><span class="location">AMSTERDAM · NL</span><button class="cart" id="cartBtn">BAG <b id="count">0</b></button></div>
+</header>
+<main>
+<section class="hero">
+  <div class="hero-top"><span class="eyebrow">Нишевая парфюмерия / 001—024</span><span class="eyebrow">Создано для тех, кто не объясняет</span></div>
+  <div class="hero-copy">
+    <h1>SCENT<br><span>OF POWER.</span></h1>
+    <div class="hero-sub"><p>Аромат — это присутствие.<br>Не просьба о внимании. Заявление.</p><a class="cta" href="#collection">Исследовать коллекцию <span>↗</span></a></div>
+  </div>
+  <div class="hero-product"><div class="bottle"><div class="bottle-label"><strong>NOIR<br>FORM</strong><small>EAU DE PARFUM<br>50 ML</small></div></div></div>
+  <div class="hero-bottom"><span class="scroll">ПРОКРУТИТЕ, ЧТОБЫ ОТКРЫТЬ</span><span class="hero-index">NF—001 / 2026</span></div>
+</section>
+<div class="marquee"><div class="marquee-track"><span>LESS NOISE <i>✳</i> MORE PRESENCE <i>✳</i> MADE TO BE REMEMBERED <i>✳</i> LESS NOISE <i>✳</i> MORE PRESENCE <i>✳</i> MADE TO BE REMEMBERED <i>✳</i></span><span>LESS NOISE <i>✳</i> MORE PRESENCE <i>✳</i> MADE TO BE REMEMBERED <i>✳</i> LESS NOISE <i>✳</i> MORE PRESENCE <i>✳</i> MADE TO BE REMEMBERED <i>✳</i></span></div></div>
+<section id="collection">
+  <div class="section-head reveal"><div><span class="eyebrow">01 / Выбор характера</span><h2>THE<br>COLLECTION</h2></div><p>Три состояния. Три характера. Один принцип — оставаться собой.</p></div>
+  <div class="products">
+    <article class="product reveal"><div class="product-visual" role="button" tabindex="0" data-detail="obsidian" aria-label="Подробнее об аромате OBSIDIAN"><span class="product-tag">NF—001 / SIGNATURE</span><div class="product-gallery" data-gallery="obsidian"><div class="product-shot active"><div class="mini-bottle b1"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b1"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b1"><span>NOIR<br>FORM</span></div></div></div></div><div class="product-info"><div><h3>OBSIDIAN</h3><p>ДЫМ · КЕДР · КОЖА</p><button class="add" data-name="OBSIDIAN">В корзину +</button></div><div class="price">€89<br><span class="mono">50 ML</span></div></div></article>
+    <article class="product reveal"><div class="product-visual" role="button" tabindex="0" data-detail="amber" aria-label="Подробнее об аромате RAW AMBER"><span class="product-tag">NF—002 / INTENSE</span><div class="product-gallery" data-gallery="amber"><div class="product-shot active"><div class="mini-bottle b2"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b2"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b2"><span>NOIR<br>FORM</span></div></div></div></div><div class="product-info"><div><h3>RAW AMBER</h3><p>ЯНТАРЬ · ШАФРАН · ВЕТИВЕР</p><button class="add" data-name="RAW AMBER">В корзину +</button></div><div class="price">€96<br><span class="mono">50 ML</span></div></div></article>
+    <article class="product reveal"><div class="product-visual" role="button" tabindex="0" data-detail="concrete" aria-label="Подробнее об аромате CONCRETE"><span class="product-tag">NF—003 / PURE</span><div class="product-gallery" data-gallery="concrete"><div class="product-shot active"><div class="mini-bottle b3"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b3"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b3"><span>NOIR<br>FORM</span></div></div></div></div><div class="product-info"><div><h3>CONCRETE</h3><p>МИНЕРАЛЫ · ИРИС · МУСКУС</p><button class="add" data-name="CONCRETE">В корзину +</button></div><div class="price">€92<br><span class="mono">50 ML</span></div></div></article>
+    <article class="product reveal"><div class="product-visual" role="button" tabindex="0" data-detail="santal" aria-label="Подробнее об аромате DARK SANTAL"><span class="product-tag">NF—004 / WOOD</span><div class="product-gallery" data-gallery="santal"><div class="product-shot active"><div class="mini-bottle b4"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b4"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b4"><span>NOIR<br>FORM</span></div></div></div></div><div class="product-info"><div><h3>DARK SANTAL</h3><p>САНДАЛ · КАРДАМОН · БОБЫ ТОНКА</p><button class="add" data-name="DARK SANTAL">В корзину +</button></div><div class="price">€94<br><span class="mono">50 ML</span></div></div></article>
+    <article class="product reveal"><div class="product-visual" role="button" tabindex="0" data-detail="bluehour" aria-label="Подробнее об аромате BLUE HOUR"><span class="product-tag">NF—005 / FRESH</span><div class="product-gallery" data-gallery="bluehour"><div class="product-shot active"><div class="mini-bottle b5"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b5"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b5"><span>NOIR<br>FORM</span></div></div></div></div><div class="product-info"><div><h3>BLUE HOUR</h3><p>БЕРГАМОТ · МОРСКАЯ СОЛЬ · КИПАРИС</p><button class="add" data-name="BLUE HOUR">В корзину +</button></div><div class="price">€87<br><span class="mono">50 ML</span></div></div></article>
+    <article class="product reveal"><div class="product-visual" role="button" tabindex="0" data-detail="velvet" aria-label="Подробнее об аромате VELVET SMOKE"><span class="product-tag">NF—006 / NIGHT</span><div class="product-gallery" data-gallery="velvet"><div class="product-shot active"><div class="mini-bottle b6"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b6"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b6"><span>NOIR<br>FORM</span></div></div></div></div><div class="product-info"><div><h3>VELVET SMOKE</h3><p>ТАБАК · СЛИВА · ВАНИЛЬ</p><button class="add" data-name="VELVET SMOKE">В корзину +</button></div><div class="price">€99<br><span class="mono">50 ML</span></div></div></article>
+    <article class="product reveal"><div class="product-visual" role="button" tabindex="0" data-detail="moss" aria-label="Подробнее об аромате MOSS / 09"><span class="product-tag">NF—007 / GREEN</span><div class="product-gallery" data-gallery="moss"><div class="product-shot active"><div class="mini-bottle b7"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b7"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b7"><span>NOIR<br>FORM</span></div></div></div></div><div class="product-info"><div><h3>MOSS / 09</h3><p>МОХ · ИНЖИР · ПАЧУЛИ</p><button class="add" data-name="MOSS / 09">В корзину +</button></div><div class="price">€91<br><span class="mono">50 ML</span></div></div></article>
+    <article class="product reveal"><div class="product-visual" role="button" tabindex="0" data-detail="noirrose" aria-label="Подробнее об аромате NOIR ROSE"><span class="product-tag">NF—008 / DARK FLORAL</span><div class="product-gallery" data-gallery="noirrose"><div class="product-shot active"><div class="mini-bottle b8"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b8"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b8"><span>NOIR<br>FORM</span></div></div></div></div><div class="product-info"><div><h3>NOIR ROSE</h3><p>ЧЁРНАЯ РОЗА · ПЕРЕЦ · УД</p><button class="add" data-name="NOIR ROSE">В корзину +</button></div><div class="price">€103<br><span class="mono">50 ML</span></div></div></article>
+    <article class="product reveal"><div class="product-visual" role="button" tabindex="0" data-detail="steel" aria-label="Подробнее об аромате COLD STEEL"><span class="product-tag">NF—009 / MINERAL</span><div class="product-gallery" data-gallery="steel"><div class="product-shot active"><div class="mini-bottle b9"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b9"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b9"><span>NOIR<br>FORM</span></div></div></div></div><div class="product-info"><div><h3>COLD STEEL</h3><p>АЛЬДЕГИДЫ · МЕТАЛЛ · БЕЛЫЙ МУСКУС</p><button class="add" data-name="COLD STEEL">В корзину +</button></div><div class="price">€90<br><span class="mono">50 ML</span></div></div></article>
+    <article class="product reveal"><div class="product-visual" role="button" tabindex="0" data-detail="ember" aria-label="Подробнее об аромате EMBER LEATHER"><span class="product-tag">NF—010 / LEATHER</span><div class="product-gallery" data-gallery="ember"><div class="product-shot active"><div class="mini-bottle b10"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b10"><span>NOIR<br>FORM</span></div></div><div class="product-shot"><div class="mini-bottle b10"><span>NOIR<br>FORM</span></div></div></div></div><div class="product-info"><div><h3>EMBER LEATHER</h3><p>КОЖА · ЛАБДАНУМ · КАШЕМИР</p><button class="add" data-name="EMBER LEATHER">В корзину +</button></div><div class="price">€105<br><span class="mono">50 ML</span></div></div></article>
+  </div>
+</section>
+
+<section class="detail-page" id="productDetail" aria-live="polite">
+  <button class="detail-back" id="backToCollection">← Назад к коллекции</button>
+  <div class="detail-grid">
+    <div class="detail-art" id="detailArt">
+      <div class="detail-gallery" id="detailGallery">
+        <div class="product-shot active"><div class="mini-bottle b1"><span>NOIR<br>FORM</span></div></div>
+        <div class="product-shot"><div class="mini-bottle b1"><span>NOIR<br>FORM</span></div></div>
+        <div class="product-shot"><div class="mini-bottle b1"><span>NOIR<br>FORM</span></div></div>
+      </div>
+      <button class="gallery-arrow prev" id="galleryPrev" aria-label="Предыдущее изображение">‹</button>
+      <button class="gallery-arrow next" id="galleryNext" aria-label="Следующее изображение">›</button>
+      <div class="gallery-controls" id="galleryDots">
+        <button class="gallery-dot active" aria-label="Изображение 1"></button>
+        <button class="gallery-dot" aria-label="Изображение 2"></button>
+        <button class="gallery-dot" aria-label="Изображение 3"></button>
+      </div>
+    </div>
+    <div class="detail-copy">
+      <span class="eyebrow" id="detailCode">NF—001 / SIGNATURE</span>
+      <h2 id="detailName">OBSIDIAN</h2>
+      <p class="detail-description" id="detailDescription"></p>
+      <div class="detail-specs">
+        <div><strong>НОТЫ</strong><span id="detailNotes"></span></div>
+        <div><strong>ХАРАКТЕР</strong><span id="detailCharacter"></span></div>
+        <div><strong>ОБЪЁМ</strong><span>50 ML</span></div>
+      </div>
+      <div class="detail-extra">
+        <strong>КАК РАСКРЫВАЕТСЯ АРОМАТ</strong>
+        <p id="detailPyramid"></p>
+        <strong>НАСТРОЕНИЕ И СЛУЧАЙ</strong>
+        <p id="detailOccasion"></p>
+        <strong>СТОЙКОСТЬ И ШЛЕЙФ</strong>
+        <p id="detailPerformance"></p>
+      </div>
+      <div class="detail-buy"><span class="detail-price" id="detailPrice">€89</span><button class="cta" id="detailAdd">Добавить в корзину <span>↗</span></button></div>
+    </div>
+  </div>
+</section>
+
+<section class="manifesto" id="philosophy">
+  <div><span class="eyebrow">02 / Наша философия</span><h2>NO<br>PERMISSION<br>NEEDED.</h2></div>
+  <div class="manifesto-copy"><p>Мы верим в силу сдержанности. В форму, которая не нуждается в украшениях. В аромат, который остаётся в памяти, даже когда ты уже ушёл.</p><p>NOIR / FORM — парфюмерия вне трендов. Чистые линии. Сильные композиции. Никаких лишних слов.</p><div class="mono">DESIGNED TO LEAVE A TRACE — EST. 2026</div></div>
+</section>
+<section id="notes">
+  <div class="section-head reveal"><div><span class="eyebrow">03 / В основе каждого аромата</span><h2>RAW<br>MATERIALS.</h2></div><p>Натуральные акценты и точная работа с контрастом.</p></div>
+  <div class="notes reveal"><div class="note"><strong>01 — EARTH</strong><h3>Земля и дерево</h3><p>Сухой кедр, ветивер и глубокие древесные ноты создают устойчивый фундамент.</p></div><div class="note"><strong>02 — HEAT</strong><h3>Тепло и смолы</h3><p>Янтарь, специи и смолы добавляют композиции плотность и глубину.</p></div><div class="note"><strong>03 — AIR</strong><h3>Воздух и минералы</h3><p>Холодные минеральные аккорды оставляют чистый, узнаваемый шлейф.</p></div></div>
+</section>
+</main>
+<footer><div class="footer-logo">NOIR<span style="color:var(--acid)">/</span>FORM</div><div class="footer-meta">INDEPENDENT PERFUMERY<br>AMSTERDAM · THE NETHERLANDS<br>© 2026 NOIR / FORM</div></footer>
+
+<div class="toast" id="toast">ДОБАВЛЕНО В КОРЗИНУ</div>
+<div class="progress-line" id="progressLine"></div><div class="cursor-glow" id="cursorGlow"></div>
+<div class="cart-overlay" id="cartOverlay">
+  <aside class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <div class="cart-head"><h2 id="cartTitle">ВАШ ЗАКАЗ</h2><button class="close-cart" id="closeCart" aria-label="Закрыть корзину">✕</button></div>
+    <div id="cartContents"></div>
+    <form class="checkout-form" id="checkoutForm">
+      <h3>Оформление заказа</h3>
+      <label for="customerName">ИМЯ И ФАМИЛИЯ</label><input id="customerName" name="name" autocomplete="name" required placeholder="Как к вам обращаться">
+      <label for="customerEmail">EMAIL</label><input id="customerEmail" name="email" type="email" autocomplete="email" required placeholder="name@example.com">
+      <label for="customerPhone">ТЕЛЕФОН</label><input id="customerPhone" name="phone" type="tel" autocomplete="tel" required placeholder="+49 ...">
+      <label for="customerAddress">АДРЕС ДОСТАВКИ</label><textarea id="customerAddress" name="address" rows="2" required placeholder="Улица, дом, город, индекс"></textarea>
+      <label for="customerPayment">СПОСОБ ОПЛАТЫ</label><select id="customerPayment" name="payment"><option>Оплата при подтверждении заказа</option><option>Связаться для выбора оплаты</option></select>
+      <button class="cta" type="submit">Подтвердить заказ <span>↗</span></button>
+      <p class="checkout-note">Демонстрационная форма: заказ пока не отправляется продавцу и оплата не списывается. Для реальных заказов нужно подключить сервер, почту или платёжный сервис.</p>
+    </form>
+    <div class="success-message" id="successMessage"></div>
+  </aside>
+</div>
+<script>
+const catalog = {
+  obsidian:{name:'OBSIDIAN',code:'NF—001 / SIGNATURE',price:89,notes:'Дым · кедр · кожа',character:'Тёмный, древесный',color:'b1',
+    description:'Глубокий и собранный аромат с дымным вступлением, сухим кедром в сердце и мягким кожаным шлейфом. Он звучит сдержанно, но уверенно — как тёмный костюм, который не нуждается в лишних деталях.',
+    pyramid:'Сначала — сухой дым и чёрный перец. Затем раскрываются кедр и пряные древесные оттенки. В базе остаются кожа, ветивер и тёплая амбра.',
+    occasion:'Для вечерних выходов, важных встреч и прохладной погоды. Подойдёт тем, кто любит насыщенные древесные ароматы без сладкой тяжести.',
+    performance:'Заявленный характер — насыщенный. Ориентир для концепции аромата: стойкий, заметный шлейф. Реальные показатели зависят от кожи и условий.'},
+  amber:{name:'RAW AMBER',code:'NF—002 / INTENSE',price:96,notes:'Янтарь · шафран · ветивер',character:'Тёплый, пряный',color:'b2',
+    description:'Тёплая смола встречается с сухим шафраном и землистым ветивером. Композиция создаёт ощущение мягкого тепла, дорогой ткани и спокойной уверенности.',
+    pyramid:'В начале — шафран и лёгкая пряность. В сердце — янтарные смолы и сухие специи. База раскрывается ветивером, пачули и мягким древесным аккордом.',
+    occasion:'Особенно хорош осенью и зимой, для ужинов, встреч и неспешных вечеров. Для любителей тёплых, амбровых и пряных композиций.',
+    performance:'По задумке — плотный и обволакивающий аромат с выразительным шлейфом. Фактическая стойкость может отличаться на разной коже.'},
+  concrete:{name:'CONCRETE',code:'NF—003 / PURE',price:92,notes:'Минералы · ирис · мускус',character:'Чистый, минеральный',color:'b3',
+    description:'Холодный минеральный аккорд, сдержанный ирис и чистый мускус. Современный, лаконичный аромат с прохладным ощущением свежего воздуха и гладкого камня.',
+    pyramid:'Стартуют прозрачные цитрусовые и озоновые нюансы. В сердце — пудровый ирис и минеральный аккорд. В базе — белый мускус и светлое дерево.',
+    occasion:'Универсальный вариант на каждый день, в офис, учёбу и поездки. Особенно понравится тем, кто выбирает чистые, ненавязчивые ароматы.',
+    performance:'Задуман как умеренный, близкий к коже аромат с аккуратным шлейфом. Интенсивность зависит от количества нанесения и особенностей кожи.'},
+  santal:{name:'DARK SANTAL',code:'NF—004 / WOOD',price:94,notes:'Сандал · кардамон · бобы тонка',character:'Кремовый, древесный',color:'b4',
+    description:'Мягкая глубина сандала соединяется с прохладой кардамона и сливочной теплотой бобов тонка. Спокойный, тактильный аромат с дорогим древесным звучанием.',
+    pyramid:'Первое впечатление — кардамон и сухие специи. В сердце раскрывается сливочный сандал. В базе остаются бобы тонка, амбра и мягкий мускус.',
+    occasion:'Подойдёт для повседневного использования, встреч и спокойных вечеров. Хороший выбор для поклонников мягких древесных ароматов.',
+    performance:'Композиция задумана как ровная и комфортная, со средним шлейфом. Реальная стойкость зависит от кожи, температуры и нанесения.'},
+  bluehour:{name:'BLUE HOUR',code:'NF—005 / FRESH',price:87,notes:'Бергамот · морская соль · кипарис',character:'Свежий, прохладный',color:'b5',
+    description:'Свежий воздух перед наступлением ночи: цитрусовая искра бергамота, солёный морской аккорд и сухая зелень кипариса. Чистый аромат с холодным характером.',
+    pyramid:'На старте — бергамот и горьковатая цедра. В сердце — морская соль и ароматические травы. В базе — кипарис, кедр и прозрачный мускус.',
+    occasion:'Для дневного времени, тёплой погоды, путешествий и активных дней. Подойдёт тем, кто предпочитает свежесть без спортивной резкости.',
+    performance:'Лёгкое и воздушное звучание с умеренным шлейфом. Свежие ноты могут ощущаться по-разному в зависимости от температуры и кожи.'},
+  velvet:{name:'VELVET SMOKE',code:'NF—006 / NIGHT',price:99,notes:'Табак · слива · ваниль',character:'Дымный, сладковатый',color:'b6',
+    description:'Тёмная слива и сухой табачный лист создают бархатное, немного загадочное звучание. Ваниль смягчает композицию, не превращая её в приторный десерт.',
+    pyramid:'В начале — спелая слива и щепотка перца. В сердце — табачный лист и тёплые древесные ноты. В базе — ваниль, какао и бальзамические оттенки.',
+    occasion:'Для вечера, прохладной погоды и особых случаев. Выбор для тех, кому нравятся глубокие, уютные и немного гурманские ароматы.',
+    performance:'По концепции — насыщенный вечерний аромат с заметным шлейфом. Рекомендуется начинать с одного-двух распылений.'},
+  moss:{name:'MOSS / 09',code:'NF—007 / GREEN',price:91,notes:'Мох · инжир · пачули',character:'Зелёный, землистый',color:'b7',
+    description:'Зелёный и естественный аромат, словно прогулка по влажному лесу после дождя. Лист инжира добавляет мягкую зелёную свежесть, а мох и пачули дают глубину.',
+    pyramid:'Старт — зелёный лист и свежий инжир. Сердце — травяные и древесные оттенки. База — дубовый мох, пачули и влажная земля.',
+    occasion:'Для дневного времени, прогулок и тех моментов, когда хочется природного, небанального звучания. Хорошо сочетается с минималистичным стилем.',
+    performance:'Умеренная насыщенность с естественным, не слишком громким шлейфом. Впечатление меняется в зависимости от погоды и кожи.'},
+  noirrose:{name:'NOIR ROSE',code:'NF—008 / DARK FLORAL',price:103,notes:'Чёрная роза · перец · уд',character:'Цветочный, тёмный',color:'b8',
+    description:'Роза здесь лишена привычной романтичности: она тёмная, пряная и почти дымная. Перец добавляет сухую остроту, а уд делает композицию глубокой и запоминающейся.',
+    pyramid:'Верхние ноты — чёрный перец и пряные лепестки. В сердце — тёмная роза и герань. База — уд, смолы и сухая древесина.',
+    occasion:'Для вечера, мероприятий и выразительного образа. Для тех, кто любит сложные цветочные ароматы с древесным характером.',
+    performance:'Задуман как выразительный аромат с плотным шлейфом. Лучше наносить умеренно, особенно в закрытых помещениях.'},
+  steel:{name:'COLD STEEL',code:'NF—009 / MINERAL',price:90,notes:'Альдегиды · металл · белый мускус',character:'Холодный, чистый',color:'b9',
+    description:'Абстрактная прохлада металла и чистого воздуха. Альдегидное начало постепенно становится мягче, уступая место белому мускусу и гладким древесным оттенкам.',
+    pyramid:'Сначала — искристые альдегиды и прохладные цитрусы. В сердце — минеральный аккорд и лёгкие специи. В базе — белый мускус и светлое дерево.',
+    occasion:'Для города, офиса и современного повседневного образа. Подойдёт любителям необычной чистоты и минималистичных ароматов.',
+    performance:'Чистое, умеренное звучание с деликатным шлейфом. Интенсивность можно регулировать количеством распылений.'},
+  ember:{name:'EMBER LEATHER',code:'NF—010 / LEATHER',price:105,notes:'Кожа · лабданум · кашемир',character:'Кожаный, смолистый',color:'b10',
+    description:'Образ тёплой кожи рядом с тлеющими углями. Лабданум добавляет смолистую глубину, а кашемировые древесные оттенки делают аромат мягким и обволакивающим.',
+    pyramid:'Открывается пряным аккордом и сухой кожей. В сердце звучит лабданум и тёмная амбра. В базе — кашемировое дерево, бензоин и мускус.',
+    occasion:'Для холодного сезона, вечерних встреч и тех, кто выбирает кожаные и смолистые композиции. Аромат для уверенного, спокойного образа.',
+    performance:'По задумке — насыщенный, тёплый аромат с продолжительным ощущением на коже. Фактические свойства зависят от формулы и индивидуальной кожи.'}
+};
+const cart = {};
+const countEl=document.getElementById('count');
+const toast=document.getElementById('toast');
+const overlay=document.getElementById('cartOverlay');
+const cartContents=document.getElementById('cartContents');
+const checkoutForm=document.getElementById('checkoutForm');
+const successMessage=document.getElementById('successMessage');
+function notify(message){toast.textContent=message;toast.classList.add('show');clearTimeout(notify.timer);notify.timer=setTimeout(()=>toast.classList.remove('show'),1900)}
+function cartCount(){return Object.values(cart).reduce((sum,item)=>sum+item.qty,0)}
+function addToCart(key){const item=catalog[key];if(!item)return;if(!cart[key])cart[key]={...item,qty:0};cart[key].qty++;countEl.textContent=cartCount();renderCart();notify(item.name+' — ДОБАВЛЕНО В КОРЗИНУ')}
+function renderCart(){
+ const entries=Object.entries(cart);const total=entries.reduce((sum,[,item])=>sum+item.price*item.qty,0);
+ if(!entries.length){cartContents.innerHTML='<div class="empty-cart">Корзина пока пуста.<br>Выберите аромат из коллекции.</div>';checkoutForm.style.display='none';}
+ else{checkoutForm.style.display='block';cartContents.innerHTML='<div class="cart-items">'+entries.map(([key,item])=>`<div class="cart-row"><div><strong>${item.name}</strong><small>50 ML · €${item.price} · Количество: ${item.qty}</small></div><div><strong>€${item.price*item.qty}</strong><br><button type="button" data-remove="${key}">Убрать одну</button></div></div>`).join('')+'</div><div class="cart-total"><span>ИТОГО</span><strong>€'+total+'</strong></div>';cartContents.querySelectorAll('[data-remove]').forEach(btn=>btn.addEventListener('click',()=>{const key=btn.dataset.remove;cart[key].qty--;if(cart[key].qty<=0)delete cart[key];countEl.textContent=cartCount();renderCart()}));}
+}
+function openCart(){renderCart();overlay.classList.add('open');document.body.style.overflow='hidden'}
+function closeCart(){overlay.classList.remove('open');document.body.style.overflow=''}
+document.querySelectorAll('.add').forEach(btn=>btn.addEventListener('click',()=>{const key=Object.keys(catalog).find(k=>catalog[k].name===btn.dataset.name);addToCart(key)}));
+document.getElementById('cartBtn').addEventListener('click',openCart);
+document.getElementById('closeCart').addEventListener('click',closeCart);
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeCart()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCart()}});
+
+// Product image motion: three editorial views cycle automatically on each product card.
+const galleryTimers = [];
+document.querySelectorAll('.product-gallery').forEach(gallery=>{
+ const shots=[...gallery.querySelectorAll('.product-shot')];let index=0;
+ const timer=setInterval(()=>{shots[index].classList.remove('active');index=(index+1)%shots.length;shots[index].classList.add('active')},2600);
+ galleryTimers.push(timer);
+});
+let detailSlide=0, detailTimer=null;
+function setDetailSlide(next){
+ const shots=[...document.querySelectorAll('#detailGallery .product-shot')];
+ const dots=[...document.querySelectorAll('#galleryDots .gallery-dot')];
+ if(!shots.length)return;
+ detailSlide=(next+shots.length)%shots.length;
+ shots.forEach((s,i)=>s.classList.toggle('active',i===detailSlide));
+ dots.forEach((d,i)=>d.classList.toggle('active',i===detailSlide));
+}
+function startDetailGallery(){
+ clearInterval(detailTimer);setDetailSlide(0);
+ detailTimer=setInterval(()=>setDetailSlide(detailSlide+1),3000);
+}
+document.getElementById('galleryPrev').addEventListener('click',()=>{setDetailSlide(detailSlide-1);startDetailGallery()});
+document.getElementById('galleryNext').addEventListener('click',()=>{setDetailSlide(detailSlide+1);startDetailGallery()});
+document.querySelectorAll('#galleryDots .gallery-dot').forEach((dot,i)=>dot.addEventListener('click',()=>{setDetailSlide(i);startDetailGallery()}));
+
+function showDetail(key){
+ const item=catalog[key];if(!item)return;
+ document.getElementById('detailCode').textContent=item.code;
+ document.getElementById('detailName').textContent=item.name;
+ document.getElementById('detailDescription').textContent=item.description;
+ document.getElementById('detailNotes').textContent=item.notes;
+ document.getElementById('detailCharacter').textContent=item.character;
+ document.getElementById('detailPyramid').textContent=item.pyramid;
+ document.getElementById('detailOccasion').textContent=item.occasion;
+ document.getElementById('detailPerformance').textContent=item.performance;
+ document.getElementById('detailPrice').textContent='€'+item.price;
+ document.querySelectorAll('#detailGallery .mini-bottle').forEach(bottle=>{bottle.className='mini-bottle '+item.color;});
+ startDetailGallery();
+ document.getElementById('detailAdd').onclick=()=>addToCart(key);
+ const page=document.getElementById('productDetail');page.classList.remove('open');void page.offsetWidth;page.classList.add('open');
+ page.scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.querySelectorAll('[data-detail]').forEach(el=>{
+ el.addEventListener('click',()=>showDetail(el.dataset.detail));
+ el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showDetail(el.dataset.detail)}});
+});
+document.getElementById('backToCollection').addEventListener('click',()=>document.getElementById('collection').scrollIntoView({behavior:'smooth'}));
+checkoutForm.addEventListener('submit',e=>{
+ e.preventDefault();if(!cartCount())return;
+ const data=new FormData(checkoutForm);
+ const order=Object.values(cart).map(i=>`${i.name} × ${i.qty} — €${i.price*i.qty}`).join('<br>');
+ const total=Object.values(cart).reduce((s,i)=>s+i.price*i.qty,0);
+ successMessage.innerHTML=`Заявка оформлена в демонстрационном режиме.<br><br>${order}<br><br><strong>Итого: €${total}</strong><br>Имя: ${String(data.get('name')).replace(/[&<>"]/g,'')}<br>Спасибо! Подключите серверную обработку, чтобы получать такие заказы.`;
+ successMessage.classList.add('show');checkoutForm.style.display='none';
+});
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+const progress=document.getElementById('progressLine');
+window.addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?scrollY/max*100:0)+'%';document.querySelector('header').classList.toggle('scrolled',scrollY>30)},{passive:true});
+const glow=document.getElementById('cursorGlow');
+window.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'},{passive:true});
+const hero=document.querySelector('.hero-product');
+window.addEventListener('pointermove',e=>{if(innerWidth>800){const x=(e.clientX/innerWidth-.5)*12;const y=(e.clientY/innerHeight-.5)*12;hero.style.transform=`translate(${x}px,${y}px)`}},{passive:true});
+</script>
+</body>
+</html>

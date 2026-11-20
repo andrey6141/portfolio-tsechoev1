@@ -1,0 +1,5 @@
+document.addEventListener('DOMContentLoaded',()=>{
+ const reveal=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');reveal.unobserve(e.target);}}),{threshold:.12});
+ document.querySelectorAll('.section,.feature-band,.stats,.service-card,.excavator-section,.cta').forEach(x=>{x.classList.add('reveal');reveal.observe(x);});
+ const counters=document.querySelectorAll('[data-count]');const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const el=e.target,target=+el.dataset.count,start=performance.now(),duration=1300;function tick(t){const p=Math.min((t-start)/duration,1);el.textContent=Math.floor(target*(1-Math.pow(1-p,3))).toLocaleString('ru-RU')+'+';if(p<1)requestAnimationFrame(tick);}requestAnimationFrame(tick);obs.unobserve(el);}}));counters.forEach(x=>obs.observe(x));
+});
